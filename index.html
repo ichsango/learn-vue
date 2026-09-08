@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <img v-bind:src="img" v-bind:alt="alt">
+        <p v-text="message"></p> 
+        <a :href="myLink">go to google</a>
+        <a v-html="myHtml"></a>
+        <!-- <p>
+            {{ itIsTrue }}
+        </p>
+        <p>
+            {{ myArray[1] }}
+        </p>
+        <p>
+            hello {{ myObj.name }}. You are a {{ myObj.job }} from {{ myObj.city }}
+        </p>
+        <p>
+            {{ greeting }}
+        </p>
+        <p>
+            {{ myFunction() }}
+        </p> -->
+        <p>
+            {{ myFunction() }}
+        </p>
+    </div>
+    <script>
+        const { createApp } = Vue;
+
+        ////createApp({
+        //    data() {
+        //        return {
+        //            message: 'Hello Vue!',
+        //            itIsTrue: true,
+        //            myArray: [
+        //                'vue',
+        //                'asik',
+        //                'banget'
+        //            ],
+        //            myObj: {
+        //                name: 'Ichsan',
+        //                job: 'web developer',
+        //                city: 'New York'
+        //            },
+        //            greeting: 'hari ini adalah ' + new Date().toLocaleString(),
+        //            
+        //            myFunction:() => {
+        //                return 'nama ku Ichsan';
+        //            }
+        //        }
+        //    }
+        //}).mount('#app');
+
+    const App = {
+        data() {
+            return {
+                img: 'https://picsum.photos/200/300',
+                message: 'Hello Vue!',
+                myHtml: '<p>hello <strong> hello Vue</strong></p>',
+                myLink: 'https://www.google.com',
+                isItTrue: false,
+                myArray: [
+                    'vue',
+                    'is',
+                    'awqesome'
+                ]
+            }
+        },
+        methods: {
+            myFunction() {
+                const randomArray = this.myArray[Math.floor(Math.random() * this.myArray.length)];
+
+                if (this.isItTrue) {
+                    return this.myArray[0]
+                }
+                return randomArray;
+            },
+        }
+    };
+    Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

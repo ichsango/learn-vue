@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p v-if="beratBadan > batasBerat">
+      berat cukup untuk masuk kelas 60kg
+    </p>
+    <!-- akan error pada console-->
+    <div>HELLO</div>
+
+    <p v-else>
+      berat tidak cukup untuk masuk kelas 60kg
+    </p>
+    
+    <hr>
+
+    <p v-if="beratBadan > batasBerat">
+      berat cukup untuk masuk kelas 60kg
+    </p>
+
+    <p v-else-if="nama === 'jhon'">
+      silahkan masuk anda jawara
+    </p>
+
+    <p v-else>
+      berat tidak cukup untuk masuk kelas 60kg
+    </p>
+
+    <hr>
+
+    <p v-show="beratBadan > batasBerat">
+      this is v show (berat cukup)
+    </p>
+
+    <hr>
+
+    <p v-if="checkNama()">
+      cek nama berhasil
+    </p>
+    <p v-else-if="checkWeight()">
+      cek berat berhasil
+    </p>
+    <p v-else>
+      tidak ada ceking
+    </p>
+  </div>
+</body>
+
+<script>
+  const App = {
+    data () {
+      return {
+        beratBadan: 50,
+        batasBerat: 60,
+        nama: 'jhos'
+      }
+    },
+    methods: {
+      checkNama() {
+        return this.nama === 'jhons' ? true : false
+      },
+      checkWeight() {
+        return this.beratBadan > this.batasBerat ? true : false
+      }
+    }
+  }
+
+  Vue.createApp(App).mount('#app')
+</script>
+</html>

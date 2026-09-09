@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <user-name></user-name>
+  </div>
+</body>
+
+<script>
+  // NORMAL USING //
+  // const App = {
+  //   data () {
+  //     return {
+  //       name: 'Zaky'
+  //     }
+  //   },
+  // }
+  // Vue.createApp(App).mount('#app');
+
+  // const App2 = {
+  //   data () {
+  //     return {
+  //       name: 'Zaky'
+  //     }
+  //   },
+  //   // add it later
+  //   template: "<div> {{ name }} </div>"
+  // }
+  
+  // setTimeout(() => {
+  //   Vue.createApp(App2).mount('#app');
+  // }, 3000)
+
+  // we do some powerfull ways with components
+  
+  const app3 = Vue.createApp({})
+  
+  app3.component('user-name', {
+    data() {
+      return {
+        name: 'Zaky'
+      }
+    },
+    template: '<div> {{ name }} </div>'
+  })
+
+  app3.component('app-footer', {
+    data() {
+      return {
+        name: 'Header'
+      }
+    },
+    template: '<div class="box"> {{ name }} </div>'
+  })
+
+  app3.mount('#app')
+
+  // create more example header and footer
+
+
+</script>
+
+<style>
+  .box {
+    background: black;
+    color: white;
+  }
+</style>
+</html>

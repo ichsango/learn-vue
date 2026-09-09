@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="app1">
+    <p>
+      instance one : {{ value}}
+    </p>
+    <button @click="changeValue">Change Value</button>
+  </div>
+  <hr>
+  <div id="app2">
+    <p>
+      instance two : {{ value}}
+    </p>
+    <button @click="greetingMessage">Greeting Message</button>
+  </div>
+</body>
+
+<script>
+  let greeting = 'Welcome Back !'
+
+  const App1 = Vue.createApp({
+    data () {
+      return {
+        value: 'Value of Instance One'
+      }
+    },
+    methods: {
+      changeValue() {
+        console.log(App2)
+        App2.value = 'Instance two Change'
+      }
+    }
+  }).mount('#app1')
+
+  const App2 = Vue.createApp({
+    data () {
+      return {
+        value: 'Value of Instance Two'
+      }
+    },
+    methods: {
+      greetingMessage() {
+        alert(greeting)
+      }
+    }
+  }).mount('#app2')
+
+</script>
+
+<style>
+</style>
+</html>

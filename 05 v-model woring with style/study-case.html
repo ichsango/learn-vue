@@ -14,14 +14,12 @@
       <label>First Name</label>
         <input type="text" v-model.trim.lazy="newForm.name" />
       <hr>
-      <label>Last Name</label>
-        <input type="text" v-model="newForm.lastName" />
-      <hr>
       <label>Age</label>
         <input type="text" v-model.number="newForm.age" />
       <hr>
-
-      <input type="checkbox" id="myCheckbox" v-model="newForm.checked">
+      <label>Last Name</label>
+        <input type="email" v-model="newForm.email" />
+      <hr>
 
       <button type="submit">Submit Form !</button>
     </form>
@@ -34,17 +32,14 @@
       return {
         newForm: {
           name: '',
-          lastName: '',
           age: '',
-          checked: false
+          email: ''
         }
       }
     },
     methods: {
       handleForm() {
-        console.log(this.newForm.name)
-        console.log(this.newForm.lastName)
-        console.log(this.newForm.age)
+        alert(`saya berhasil submit ${this.newForm.name}, ${this.newForm.email}, ${this.newForm.age} saya`)
       }
     }
   }

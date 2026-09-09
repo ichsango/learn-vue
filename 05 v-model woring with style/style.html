@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div class="box"
+      v-bind:class="{blue: true}"
+    >
+      This is My BOX Normal!
+    </div>
+
+
+    <div class="box"
+      v-bind:class="{blue: blueColor}"
+      v-on:click="blueColor = !blueColor"
+    >
+    <!-- you can add large here -->
+      This is My BOX object!
+    </div>
+
+
+    <!-- buat menjadi object pada data -->
+    <div class="box"
+      v-bind:class="colors"
+    >
+    <!-- you can add large here -->
+      This is My BOX object in data!
+    </div>
+    <hr>
+    <div v-on:click="colors.white = !colors.white">
+      activate white
+    </div>
+
+
+    <!-- bind class menggunakan Arary -->
+    <div class="box"
+      v-bind:class="[colorsStyle.blueClass, colorsStyle.whiteClass]"
+    >
+      This is My BOX Array class!
+    </div>
+    <hr>
+    <!-- jadi gmna caranya biar toggle ini aktif -->
+    <div v-on:click="colors.white = !colors.white">
+      activate white
+    </div>
+
+    <!-- kita perlu merubah data -->
+    <div class="box"
+      v-bind:class="[
+      colorsStyle2.blueClass.active ? colorsStyle2.blueClass.name : '',
+      colorsStyle2.whiteClass.active ? colorsStyle2.whiteClass.name : ''
+      ]"
+    >
+      This is My BOX Array class 2!
+    </div>
+    <hr>
+    <div v-on:click="colorsStyle2.whiteClass.active = !colorsStyle2.whiteClass.active">
+      activate white
+    </div>
+
+    <!-- add some binding style -->
+    <div class="box"
+      v-bind:class="[
+      colorsStyle2.blueClass.active ? colorsStyle2.blueClass.name : '',
+      colorsStyle2.whiteClass.active ? colorsStyle2.whiteClass.name : ''
+      ]"
+      style="border: 5px solid yellow;"
+    >
+      This is My BOX Array class 2!
+    </div>
+    <hr>
+    <div v-on:click="colorsStyle2.whiteClass.active = !colorsStyle2.whiteClass.active">
+      activate white
+    </div>
+
+    <div class="box"
+      v-bind:class="[
+      colorsStyle2.blueClass.active ? colorsStyle2.blueClass.name : '',
+      colorsStyle2.whiteClass.active ? colorsStyle2.whiteClass.name : ''
+      ]"
+      v-bind:style="style"
+    >
+      This is My BOX bind style!
+    </div>
+    <hr>
+    <div v-on:click="colorsStyle2.whiteClass.active = !colorsStyle2.whiteClass.active, style.fontSize = '100px'">
+      activate white
+    </div>
+  </div>
+</body>
+
+<script>
+  const App = {
+    data () {
+      return {
+        blueColor: false,
+
+        colors: {
+          blue: true,
+          white: false
+        },
+
+        colorsStyle: {
+          blueClass: 'blue',
+          whiteClass: 'white'
+        },
+        colorsStyle2: {
+          blueClass: {
+            name: 'blue',
+            active: true
+          },
+          whiteClass: {
+            name: 'white',
+            active: false
+          }
+        },
+        style: {
+          fontSize: '40px',
+          border: '5px solid yellow'
+        }
+      }
+    },
+    methods: {
+    }
+  }
+
+  Vue.createApp(App).mount('#app')
+</script>
+
+<style>
+  .box {
+    color: white;
+    background: black;
+    padding: 20px;
+  }
+  .blue {
+    background: blue;
+  }
+  .white {
+    background: white;
+    color: black;
+  }
+  .magenta {
+    background: magenta;
+  }
+  .large {
+    font-size: 40px;
+  }
+</style>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input v-model="name">
+    <button v-on:click="handleActive">Active</button>
+    {{active}}
+    <div>
+      message: {{ message() }} --- {{ compMessage }}
+    </div>
+    <div>
+      {{ mesActive() }}
+    </div>
+  </div>
+</body>
+
+<script>
+  const App = {
+    data () {
+      return {
+        name: '',
+        active: false
+      }
+    },
+    computed: {
+      compMessage() {
+        console.log('computed Message')
+        return this.name === 'Zaky' ? 'Welcome' : 'Not Welcome'
+      },
+      compActive() {
+        console.log('Computed activate')
+        return this.active === true ? 'this is active' : 'this is not active'
+      }
+    },
+    methods: {
+      message() {
+        console.log('panggil message')
+        return this.name === 'Zaky' ? 'Welcome' : 'Not Welcome'
+      },
+      mesActive() {
+        console.log('pangging active')
+        return this.active === true ? 'this is active' : 'this is not active'
+      },
+      handleActive() {
+        this.active = !this.active;
+      }
+    }
+  }
+
+  Vue.createApp(App).mount('#app')
+</script>
+
+<style>
+</style>
+</html>

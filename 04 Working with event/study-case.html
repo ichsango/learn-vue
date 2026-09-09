@@ -10,7 +10,9 @@
 </head>
 <body>
   <div id="app">
-    <input type="text" v-on:keyup.G.space="showEvent"/>
+    <div v-on:click="clickAlert">
+      alert me !!
+    </div>
   </div>
 </body>
 
@@ -18,24 +20,16 @@
   const App = {
     data () {
       return {
+        
       }
     },
     methods: {
-      showEvent(event) {
-        console.log(event.target.value)
-      },
+      clickAlert() {
+        alert('saya dapat membuat alert menggunakan v-on')
+      }
     }
   }
 
   Vue.createApp(App).mount('#app')
 </script>
-
-<style>
-  .box {
-    background: red;
-    width: 200px;
-    height: 200px;
-    color: white;
-  }
-</style>
 </html>

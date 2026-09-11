@@ -20,6 +20,9 @@
                 </li>
             </ul>
         </ul>
+        <button @click="updateLastName">Child Update name</button>
+        <button @click="sayHello">child Say Hello</button>
+        <button @click="updateAge(35)">child update age</button>
     </div>
 </template>
 
@@ -29,12 +32,21 @@
             aka: String,
             lastname: String,
             userAge: Number,
-            userParents: Object
+            userParents: Object,
+            updateAge: Function
         },
         
         data() {
             return {
                 name: 'Ghof123'
+            }
+        },
+        methods: {
+            updateLastName() {
+                this.$emit('update-last', 'syahab')
+            },
+            sayHello() {
+                this.$emit('say-hello')
             }
         }
     }

@@ -7,6 +7,9 @@
           :lastname="lastname"
           :userAge="age"
           :userParents="parents"
+          @update-last="lastname = $event"
+          @say-hello="sayHello"
+          :updateAge="updateAge"
         ></profil-page>
         <button @click="updateName">change name</button>
       </div>
@@ -35,6 +38,12 @@
     methods: {
       updateName() {
         this.name = 'aing'
+      },
+      sayHello() {
+        alert('hello world pti')
+      },
+      updateAge(value) {
+        this.age = value
       }
     }
   }

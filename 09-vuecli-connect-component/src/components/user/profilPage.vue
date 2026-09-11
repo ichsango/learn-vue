@@ -8,16 +8,30 @@
             <li>
                 <span>aKa: </span> {{ aka }}
             </li>
-             <li>
+            <li>
                 <span>Last Name: </span> {{ lastname}}
             </li>
+            <li>
+                <span>umur: </span> {{ userAge }}
+            </li>
+            <ul>
+                <li v-for="(value, key, index) in userParents" :key="index">
+                    {{ key }} : {{ value }}
+                </li>
+            </ul>
         </ul>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['aka', 'lastname'],
+        props: {
+            aka: String,
+            lastname: String,
+            userAge: Number,
+            userParents: Object
+        },
+        
         data() {
             return {
                 name: 'Ghof123'

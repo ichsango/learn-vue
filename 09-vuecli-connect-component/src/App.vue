@@ -5,6 +5,8 @@
         <profil-page 
           :aka="name"
           :lastname="lastname"
+          :userAge="age"
+          :userParents="parents"
         ></profil-page>
         <button @click="updateName">change name</button>
       </div>
@@ -22,7 +24,12 @@
     data() {
       return {
         name: 'Ichsan',
-        lastname:'Ghofur'
+        lastname:'Ghofur',
+        age: 20,
+        parents: {
+          mother: 'ibu',
+          father: 'ayah'
+        }
       }
     },
     methods: {
@@ -36,7 +43,7 @@
 <style>
  body {
   padding: 0;
-  maargin: 0;
+  margin: 0;
  }
   .container {
     min-height: 80vh;

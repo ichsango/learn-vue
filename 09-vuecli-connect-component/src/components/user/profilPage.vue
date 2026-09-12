@@ -29,13 +29,35 @@
 <script>
     export default {
         props: {
-            aka: String,
-            lastname: String,
-            userAge: Number,
+            aka: {
+                type: String,
+                required: true,
+                default: 'N/A'
+            },
+            lastname: {
+                type: String,
+                //validator(value) {
+                //    if(value === 'Ghofur') {
+                //        return true
+                //    } else {
+                //        return false
+                //    }
+                //}
+            },
+            userAge: {Number, String},
             userParents: Object,
             updateAge: Function
         },
-        
+        emits: {
+                'update-last': function(last) {
+                    if (last === 'syahab') {
+                        return true
+                    } else {
+                        alert('wrong last name !!')
+                        return false
+                    }
+                }
+            },
         data() {
             return {
                 name: 'Ghof123'
@@ -43,7 +65,7 @@
         },
         methods: {
             updateLastName() {
-                this.$emit('update-last', 'syahab')
+                this.$emit('update-last', 'syahabb')
             },
             sayHello() {
                 this.$emit('say-hello')

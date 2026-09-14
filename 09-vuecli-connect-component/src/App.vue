@@ -1,49 +1,46 @@
 <template>
   <div>
     <app-header></app-header>
-      <div class="container">
-        <profil-page 
-          :aka="name"
-          :lastname="lastname"
-          :userAge="age"
-          :userParents="parents"
-          @update-last="lastname = $event"
-          @say-hello="sayHello"
-          :updateAge="updateAge"
-        ></profil-page>
-        <button @click="updateName">change name</button>
-      </div>
+      children
+      <comp-cars></comp-cars>
+
+      parent
+      <ul>
+          <li v-for="(car, index) in cars" :key="index">
+              {{ car.brand }}: {{ car.model }}
+          </li>
+      </ul>
+      <button @click="changeCar">ubah mobil</button>
     <app-footer></app-footer>
+
   </div>
 </template>
 
 <script>
-  import profilPage from './components/user/profilPage.vue'
+import compCars from './components/cars/index.vue'
 
   export default {
     components: {
-      profilPage
+      compCars
     },
     data() {
       return {
-        name: 'Ichsan',
-        lastname:'Ghofur',
-        age: 20,
-        parents: {
-          mother: 'ibu',
-          father: 'ayah'
-        }
+        cars: [
+          {model: 'jaz', brand: 'Honda'},
+          {model: 'Yariz', brand: 'Toyota'},
+          {model: 'Airev', brand: 'Wulling'},
+        ],
+      }
+    },
+    provide() {
+      return {
+        cars: this.cars,
+        changeCar : this.changeCar
       }
     },
     methods: {
-      updateName() {
-        this.name = 'aing'
-      },
-      sayHello() {
-        alert('hello world pti')
-      },
-      updateAge(value) {
-        this.age = value
+      changeCar() {
+        this.cars[0].brand = 'ferarri'
       }
     }
   }

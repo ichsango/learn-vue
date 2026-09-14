@@ -1,28 +1,30 @@
 <template>
   <div>
     <app-header></app-header>
-      <div class="container">
-          <comp-brand>
-            <ul>
-              <li v-for="(brand, index) in brands" :key="index">{{ brand }}</li>
-            </ul>
-          </comp-brand>
-          
-      </div>
+      children
+      <comp-cars></comp-cars>
+
+      parent
+      <ul>
+          <li v-for="(car, index) in cars" :key="index">
+              {{ car.brand }}: {{ car.model }}
+          </li>
+      </ul>
+      <button @click="changeCar">ubah mobil</button>
     <app-footer></app-footer>
+
   </div>
 </template>
 
 <script>
-import compBrand from './components/cars/brand.vue'
+import compCars from './components/cars/index.vue'
 
   export default {
     components: {
-      compBrand
+      compCars
     },
     data() {
       return {
-        brands: ['Honda', 'Toyota', 'Ford'],
         cars: [
           {model: 'jaz', brand: 'Honda'},
           {model: 'Yariz', brand: 'Toyota'},
@@ -44,7 +46,7 @@ import compBrand from './components/cars/brand.vue'
   }
 </script>
 
-<style scope>
+<style>
  body {
   padding: 0;
   margin: 0;
@@ -53,8 +55,5 @@ import compBrand from './components/cars/brand.vue'
     min-height: 80vh;
     box-sizing: border-box;
     padding: 20px;
-  }
-  li {
-    color: red;
   }
 </style>

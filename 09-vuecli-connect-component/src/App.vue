@@ -3,14 +3,23 @@
     <app-header></app-header>
       <div class="container">
           <comp-brand>
-            <ul>
+            <h3>ini ada di top content</h3>
+            <template v-slot:brand>
+              <ul>
               <li v-for="(brand, index) in brands" :key="index">{{ brand }}</li>
             </ul>
+            </template>
+            <template v-slot:other>
+              <h3>other slot</h3>
+            </template>
+            <template v-slot:bottom>
+              <strong>default slot</strong>
+            </template>
           </comp-brand>
           
       </div>
     <app-footer></app-footer>
-  </div>
+  </div> 
 </template>
 
 <script>

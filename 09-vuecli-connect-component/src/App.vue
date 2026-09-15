@@ -7,8 +7,11 @@
 
                 <!-- <comp-orange v-if="activeComp === 'comp-orange'"></comp-orange>
                 <comp-grape v-if="activeComp === 'comp-grape'"></comp-grape> -->
-
-                <component :is="activeComp"></component>
+                <!-- dynamic component-->
+                 <keep-alive include="comp-orange,grape-comp">
+                    <component :is="activeComp"></component>
+                 </keep-alive>
+                 <div id="dialog_ishere"></div>
             </div>
         <app-footer></app-footer>
     </div>

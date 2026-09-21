@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input 
-                        type="text" 
+                        type="email" 
                         id="email" 
                         class="form-control"
                         v-model="formData.email"
@@ -44,6 +44,14 @@
                             v-model="formData.message"
                         ></textarea>
                 </div>
+
+                <div class="form-group">
+                    <h4>Want to promotion ?</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="newsletter" id="newsletter">
+                    </div>
+                </div>
+
                 <button class="btn btn-primary"
                 @click.prevent="submitForm" 
                 >

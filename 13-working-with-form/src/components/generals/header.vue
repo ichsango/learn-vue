@@ -1,6 +1,6 @@
 <template>
     <header>
-        <div>ini adalah sebuah header</div>
+        <div>Forms</div>
     </header>
 </template>
 

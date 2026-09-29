@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit="checkForm($event)">
         <div class="row">
             <div class="col-xl-12">
                 <h1>contatc Person</h1>
@@ -102,10 +102,18 @@
                 
             
                 <button class="btn btn-primary"
-                @click.prevent="submitForm" 
+                 
                 >
                     Submit
                 </button>
+                <div v-if="this.errors.length">
+                    <p>Please fix this error:</p>
+                    <ul>
+                        <li v-for="error in errors" :key="error">
+                            {{ error }}
+                        </li>
+                    </ul>
+                </div>
                <!--  <button class="btn btn-primary" -->
                <!--  @click.prevent="getData"  -->
                <!--  > -->
@@ -120,6 +128,7 @@
     export default {
         data() {
             return {
+                errors: [],
                 formData: {
                     name: '',
                     email: '',
@@ -141,9 +150,32 @@
             }
         },
         methods: {
+            checkForm(e) {
+                e.preventDefault();
+                this.errors = [];
+
+                if(!this.formData.name) {
+                    this.errors.push('name is required')
+                }
+                if(!this.formData.email) {
+                    this.errors.push('email is required')
+                } else if(!this.validEmail(this.formData.email)) {
+                    this.errors.push('email tidak valid')
+                }
+
+                if(!this.errors.length) {
+                    this.submitForm()
+                }
+
+                console.log(this.errors)
+            },
             submitForm() {
                 console.log(this.formData)
             },
+            validEmail(email) {
+                const re = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/gm
+                return re.test(email)
+            }
             //getData() {
             //    this.formData.name = 'New Name'
             //}

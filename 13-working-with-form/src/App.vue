@@ -1,16 +1,18 @@
 <template>
     <app-header></app-header>
       <div class="container">
-        <compContact></compContact>
+        <comp-validate></comp-validate>
       </div>
+
 </template>
 
 <script>
-  import compContact from './components/contact/index.vue'
+  //import compContact from './components/contact/index.vue'
+  import compValidate from './components/validate/index.vue'
 
   export default {
     components: {
-      compContact
+      compValidate
     }
   }
 </script>

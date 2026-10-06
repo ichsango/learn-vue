@@ -1,5 +1,5 @@
 <template>
-    <Form>
+    <Form @submit="onSubmit">
         <label for="name">Name</label>
         <Field 
          name="name" 
@@ -17,21 +17,47 @@
         <Field 
          name="email" 
          :rules="validateEmail"
-         v-slot="{ field, errors }"
+         v-slot="{ field, errors, errorMessage }"
         >
            <input 
-           type="text" 
-           id="email" 
-           class="form-control"
-           v-bind="field"
-           :class="{'is-invalid': errors.length !== 0}">
-        </Field>
-        <ErrorMessage name="email" as="div" v-slot="{ message }">
-            <div class="alert alert-danger" role="alert">
-                {{ message }}   
-            </div>
-        </ErrorMessage>
+                type="text" 
+                id="email" 
+                class="form-control"
+                v-bind="field"
+                :class="{'is-invalid': errors.length !== 0}"
+            >
+           <div 
+           class="alert 
+           alert-danger" 
+           role="alert"
+           v-if="errors.length !== 0"
+           >
+                {{ errorMessage }}
 
+           </div>
+        </Field>
+        
+        <div class="form-group">
+            <label for="message">Message</label>
+            <Field name="message" :rules="validateMessage" v-slot="{ field, errors, errorMessage}">
+                <textarea 
+                    id="message" 
+                    rows="3"
+                    class="form-control" 
+                    v-bind="field"
+                    :class="{'is-invalid': errors.length !== 0}"
+                ></textarea>
+                <div 
+                class="alert alert-danger" 
+                role="alert"
+                v-if="errors.length !== 0"
+                >
+                    {{ errorMessage }}
+                </div>
+            </Field>
+        </div>
+
+        <hr>
         <button class="btn btn-primary">Submit</button>
     </Form>
 </template>
@@ -71,7 +97,20 @@
                     return 'Email must be valid'
                 }
                 return true;
-            }
+            },
+            onSubmit(values, { resetForm }) {
+                console.log('Form submitted with values:', values)
+                resetForm()
+            },
+            validateMessage(value) {
+                if(!value) {
+                    return 'Message is required'
+                }
+                if(value.length < 3) {
+                    return 'Name must be at least 3 characters'
+                }
+                return true
+            },
         }
     }
 </script>

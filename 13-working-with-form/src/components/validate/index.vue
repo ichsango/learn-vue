@@ -1,9 +1,8 @@
 <template>
-    <Form @submit="onSubmit">
+    <Form @submit="onSubmit" :validation-schema="formSchema">
         <label for="name">Name</label>
         <Field 
          name="name" 
-         :rules="validateName"
          placeholder="Input your name"
          class="form-control"
          />
@@ -16,7 +15,6 @@
         <label for="email">Email</label>
         <Field 
          name="email" 
-         :rules="validateEmail"
          v-slot="{ field, errors, errorMessage }"
         >
            <input 
@@ -39,7 +37,7 @@
         
         <div class="form-group">
             <label for="message">Message</label>
-            <Field name="message" :rules="validateMessage" v-slot="{ field, errors, errorMessage}">
+            <Field name="message" v-slot="{ field, errors, errorMessage}">
                 <textarea 
                     id="message" 
                     rows="3"
@@ -64,6 +62,7 @@
 
 <script>
     import { Field, Form, ErrorMessage } from 'vee-validate'
+    import * as yup from 'yup'
     import { errorMessages } from 'vue/compiler-sfc';
 
     export default {
@@ -72,44 +71,38 @@
             Form,
             ErrorMessage
         },
+        data() {
+            return {
+                formSchema: {
+                    name:yup.string().required('Name harus diisi').min(3, 'Name minimal 3 karakter'),
+                    email:yup.string().required('Email harus diisi').email('email tidak valid'),
+                    //email(value) {
+                    //    if(!value) {
+                    //        return 'Email is required'
+                    //    }
+                    //    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                    //    if(!emailRegex.test(value)) {
+                    //        return 'Email must be valid'
+                    //    }
+                    //    return true;
+                    //},
+                    message(value) {
+                        if(!value) {
+                            return 'Message is required'
+                        }
+                        if(value.length < 3) {
+                            return 'Message must be at least 3 characters'
+                        }
+                        return true
+                    },
+                    //opsi pakai yup
+                }
+            }
+        },
         methods: {
-            isRequired(value) {
-                if(!value) {
-                    return 'Name is required'
-                }
-                return true
-            },
-            validateName(value) {
-                if(!value) {
-                    return 'Name is required'
-                }
-                if(value.length < 3) {
-                    return 'Name must be at least 3 characters'
-                }
-                return true
-            },
-            validateEmail(value) {
-                if(!value) {
-                    return 'Email is required'
-                }
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-                if(!emailRegex.test(value)) {
-                    return 'Email must be valid'
-                }
-                return true;
-            },
             onSubmit(values, { resetForm }) {
                 console.log('Form submitted with values:', values)
                 resetForm()
-            },
-            validateMessage(value) {
-                if(!value) {
-                    return 'Message is required'
-                }
-                if(value.length < 3) {
-                    return 'Name must be at least 3 characters'
-                }
-                return true
             },
         }
     }
